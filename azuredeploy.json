@@ -207,8 +207,6 @@
             "id": "[resourceId(parameters('publicIpResourceGroupName'), 'Microsoft.Network/publicIPAddresses', parameters('publicIpName'))]"
         },
         "networkSecurityGroupName": "nsg-ssh",
-        "fileToBeCopied": "FileToBeCopied.txt",
-        "scriptFolder": "scripts",
         "scriptFileName": "cloud-deploy.sh",
         "scriptArgs": "[concat('-v ', parameters('runnerVersion'), ' -u ', parameters('runnerUrl'), ' -t ', parameters('runnerToken'))]"
     },
