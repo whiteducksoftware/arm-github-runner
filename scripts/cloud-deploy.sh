@@ -38,6 +38,12 @@ curl -v -O -L https://github.com/actions/runner/releases/download/v${RUNNER_VERS
 tar xzf ./actions-runner-${OS}-${ARCH}-${RUNNER_VERSION}.tar.gz && \
     rm actions-runner-${OS}-${ARCH}-${RUNNER_VERSION}.tar.gz
 
+# Fix permissions
+echo "========="
+echo "Adding +x flags to the scripts"
+echo "========="
+chmod +x config.sh svc.sh
+
 # Configure runner
 echo "========="
 echo -e "Configuring runner for ${GREEN}${RUNNER_URL}${NC}"
