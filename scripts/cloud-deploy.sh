@@ -48,11 +48,12 @@ chown $(whoami):$(id -g) -R .
 echo "========="
 echo -e "Configuring runner for ${GREEN}${RUNNER_URL}${NC}"
 echo "========="
-./config.sh --unattended --url ${RUNNER_URL} --token ${RUNNER_TOKEN}
+RUNNER_ALLOW_RUNASROOT=1 \
+    ./config.sh --unattended --url ${RUNNER_URL} --token ${RUNNER_TOKEN}
 
 # Install the service
 echo "========="
 echo "Configuring runner to run as a service"
 echo "========="
-sudo ./svc.sh install
-sudo ./svc.sh start
+./svc.sh install
+./svc.sh start
