@@ -21,7 +21,7 @@ while getopts "v:u:t:" opt; do
 done
 
 # Fixed args
-WORKDIR=$HOME/github/actions
+WORKDIR=/github/actions
 OS=linux
 ARCH=x64
 
@@ -34,7 +34,7 @@ echo -e "Installing runner ${GREEN}${OS}-${ARCH}-${RUNNER_VERSION}${NC} in ${GRE
 echo "========="
 
 # Download github actions runtime
-curl -v -O -L https://github.com/actions/runner/releases/download/v${RUNNER_VERSION}/actions-runner-${OS}-${ARCH}-${RUNNER_VERSION}.tar.gz
+curl -O -L https://github.com/actions/runner/releases/download/v${RUNNER_VERSION}/actions-runner-${OS}-${ARCH}-${RUNNER_VERSION}.tar.gz
 tar xzf ./actions-runner-${OS}-${ARCH}-${RUNNER_VERSION}.tar.gz && \
     rm actions-runner-${OS}-${ARCH}-${RUNNER_VERSION}.tar.gz
 
@@ -54,5 +54,5 @@ echo "========="
 echo "========="
 echo "Configuring runner to run as a service"
 echo "========="
-./svc.sh install
-./svc.sh start
+sudo ./svc.sh install
+sudo ./svc.sh start
