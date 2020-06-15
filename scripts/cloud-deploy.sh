@@ -38,9 +38,15 @@ curl -v -O -L https://github.com/actions/runner/releases/download/v${RUNNER_VERS
 tar xzf ./actions-runner-${OS}-${ARCH}-${RUNNER_VERSION}.tar.gz && \
     rm actions-runner-${OS}-${ARCH}-${RUNNER_VERSION}.tar.gz
 
+# Fix ownership
+echo "========="
+echo "Fixing file ownerships"
+echo "========="
+chown $(whoami):$(id -g) -R .
+
 # Fix permissions for config.sh
 echo "========="
-echo "Adding +x flags to config.sh"
+echo "Adding +x flag to config.sh"
 echo "========="
 chmod +x config.sh
 
@@ -52,7 +58,7 @@ echo "========="
 
 # Fix permissions for svc.sh
 echo "========="
-echo "Adding +x flags to config.sh"
+echo "Adding +x flag to config.sh"
 echo "========="
 chmod +x svc.sh
 
