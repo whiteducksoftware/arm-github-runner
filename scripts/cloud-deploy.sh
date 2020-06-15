@@ -21,7 +21,7 @@ while getopts "v:u:t:" opt; do
 done
 
 # Fixed args
-WORKDIR=/var/run/github/actions
+WORKDIR=$HOME/github/actions
 OS=linux
 ARCH=x64
 
@@ -44,23 +44,11 @@ echo "Fixing file ownerships"
 echo "========="
 chown $(whoami):$(id -g) -R .
 
-# Fix permissions for config.sh
-echo "========="
-echo "Adding +x flag to config.sh"
-echo "========="
-chmod +x config.sh
-
 # Configure runner
 echo "========="
 echo -e "Configuring runner for ${GREEN}${RUNNER_URL}${NC}"
 echo "========="
 ./config.sh --unattended --url ${RUNNER_URL} --token ${RUNNER_TOKEN}
-
-# Fix permissions for svc.sh
-echo "========="
-echo "Adding +x flag to config.sh"
-echo "========="
-chmod +x svc.sh
 
 # Install the service
 echo "========="
