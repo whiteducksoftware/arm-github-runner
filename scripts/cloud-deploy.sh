@@ -38,16 +38,27 @@ curl -v -O -L https://github.com/actions/runner/releases/download/v${RUNNER_VERS
 tar xzf ./actions-runner-${OS}-${ARCH}-${RUNNER_VERSION}.tar.gz && \
     rm actions-runner-${OS}-${ARCH}-${RUNNER_VERSION}.tar.gz
 
-# Fix permissions
+# Fix permissions for config.sh
 echo "========="
-echo "Adding +x flags to the scripts"
+echo "Adding +x flags to config.sh"
 echo "========="
-chmod +x config.sh svc.sh
+chmod +x config.sh
 
 # Configure runner
 echo "========="
 echo -e "Configuring runner for ${GREEN}${RUNNER_URL}${NC}"
 echo "========="
 ./config.sh --unattended --url ${RUNNER_URL} --token ${RUNNER_TOKEN}
+
+# Fix permissions for svc.sh
+echo "========="
+echo "Adding +x flags to config.sh"
+echo "========="
+chmod +x svc.sh
+
+# Install the service
+echo "========="
+echo "Configuring runner to run as a service"
+echo "========="
 ./svc.sh install
 ./svc.sh start
